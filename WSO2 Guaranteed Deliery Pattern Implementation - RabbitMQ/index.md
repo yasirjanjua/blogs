@@ -3,12 +3,12 @@
 # Introduction
 This blog is about the implementation of Guaranteed Delivery pattern via WSO2 Message Store and Message processor using RabbitMQ.
 
-As the name suggests the pattern ensures guranteed delivery of a message from sender to its receiver. It is a well-known pattern in Enterprise Integration world for asynchronous messaging. More information about this pattern [here][linkToGDPattern]
+As the name suggests the pattern ensures guaranteed delivery of a message from sender to its receiver. It is a well-known pattern in Enterprise Integration world for asynchronous messaging. More information about this pattern [here][linkToGDPattern]
 
 # Overview
 ![Guaranteed Delivery Pattern Diagram](./overview.png "Courtesy of WSO2")
 
-The message sender saves the message to a message-store rather directly sending it to the receiver endpoint. A message processor then pick-ups the message from message-store and tries to deliver it to the endpoint. If endpoint is unavailable or message delivery is unsuccessful then the message is stored to a failover-store. Hence, message is not lost and failover message processor then picks the message from failover-store and delivers it back to original message-store. This way the orginal message processor tries to deliver the message again untill delivery is successful.
+The message sender saves the message to a message-store rather directly sending it to the receiver endpoint. A message processor then pick-ups the message from message-store and tries to deliver it to the endpoint. If endpoint is unavailable or message delivery is unsuccessful then the message is stored to a failover-store. Hence, message is not lost and failover message processor then picks the message from failover-store and delivers it back to original message-store. This way the original message processor tries to deliver the message again until delivery is successful.
 
 # Pre-Reqs
 In order to follow along through this tutorial, make sure following components are installed:
@@ -34,7 +34,7 @@ In order to setup the transport sender and listener for RabbitMQ, add the follow
 <script src="https://gist.github.com/yasirjanjua/9183c5ac48d12ad3f82d05591082efed.js"></script>
 
 Save the configurations. Make sure RabbitMQ instance is running and start the Micro-Integrator.
-You'll notice a connecton log in the console.
+You'll notice a connection log in the console.
 
 **_Note_** : In case your RabbitMQ instance has different _username_, _password_ or _port_, feel free to update the paramters in the configurations.
 
@@ -86,6 +86,8 @@ The **_events-processor_** then tries to deliver the message to the **_events-de
 
 This way message is never lost due to the unavailability of backend and that's what guaranteed delivery pattern ensures. :)
 
-# References:
+[linkToGDPattern]: https://www.enterpriseintegrationpatterns.com/patterns/messaging/GuaranteedMessaging.html
 
-[linkToGDPattern]: https://docs.wso2.com/display/IntegrationPatterns/Guaranteed+Delivery#df23c084462d4f90af10720f14686e46
+# References:
+- WSO2 Guaranteed Delivery pattern overview - https://docs.wso2.com/display/IntegrationPatterns/Guaranteed+Delivery#df23c084462d4f90af10720f14686e46
+- Enable RabbitMQ Transport in WSO2 - https://ei.docs.wso2.com/en/7.1.0/micro-integrator/setup/brokers/configure-with-rabbitMQ/#enabling-the-rabbitmq-transport
