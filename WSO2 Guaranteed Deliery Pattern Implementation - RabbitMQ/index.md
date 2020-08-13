@@ -6,7 +6,7 @@ This blog is about the implementation of Guaranteed Delivery pattern via WSO2 Me
 As the name suggests the pattern ensures guranteed delivery of a message from sender to its receiver. It is a well-known pattern in Enterprise Integration world for asynchronous messaging. More information about this pattern [here][linkToGDPattern]
 
 # Overview
-![Guaranteed Delivery Pattern Diagram](./guaranteed-delivery-pattern.png "Courtesy of WSO2")
+![Guaranteed Delivery Pattern Diagram](./overview.png "Courtesy of WSO2")
 
 The message sender saves the message to a message-store rather directly sending it to the receiver endpoint. A message processor then pick-ups the message from message-store and tries to deliver it to the endpoint. If endpoint is unavailable or message delivery is unsuccessful then the message is stored to a failover-store. Hence, message is not lost and failover message processor then picks the message from failover-store and delivers it back to original message-store. This way the orginal message processor tries to deliver the message again untill delivery is successful.
 
